@@ -162,23 +162,13 @@ typedef struct {
  */
 esp_err_t gpio_ex_config(gpio_ex_config_t* pgpio_ex_config);
 
-esp_err_t gpio_ex_intr_enable(gpio_ex_num_t gpio_ex_num);
-
-esp_err_t gpio_ex_intr_disable(gpio_ex_num_t gpio_ex_num);
-
 esp_err_t gpio_ex_set_level(gpio_ex_num_t gpio_ex_num, uint32_t level);
 
 int gpio_ex_get_level(gpio_ex_num_t gpio_ex_num);
 
 esp_err_t gpio_ex_set_direction(gpio_ex_num_t gpio_ex_num, gpio_ex_mode_t mode);
 
-esp_err_t gpio_ex_isr_register(void (*fn)(void*), void* arg);
-
-esp_err_t gpio_ex_install_isr_service(void);
-
-void gpio_ex_uninstall_isr_service();
-
-esp_err_t gpio_ex_isr_handler_remove(gpio_ex_num_t gpio_ex_num);
+esp_err_t gpio_ex_isr_register(void (*fn)(gpio_ex_num_t, void*), void* arg);
 
 // Test only
 void __gpio_ex_reset_i2c();

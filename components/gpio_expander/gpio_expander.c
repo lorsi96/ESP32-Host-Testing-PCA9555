@@ -114,6 +114,10 @@ esp_err_t gpio_ex_set_level(gpio_ex_num_t gpio_ex_num, uint32_t level) { _update
 
 int gpio_ex_get_level(gpio_ex_num_t gpio_ex_num) { return _read_bit(CMD_INPUT, gpio_ex_num); }
 
+esp_err_t gpio_ex_set_direction(gpio_ex_num_t gpio_ex_num, gpio_ex_mode_t mode) {
+  _update_bit(CMD_CONFIG, gpio_ex_num, mode == GPIO_EX_MODE_OUTPUT);
+}
+
 /* ****************************************************************************************************************** */
 /*                                        TODO: Not Implemented Public Methods                                        */
 /* ****************************************************************************************************************** */
@@ -122,15 +126,7 @@ esp_err_t gpio_ex_intr_enable(gpio_ex_num_t gpio_ex_num) { return -1; }
 
 esp_err_t gpio_ex_intr_disable(gpio_ex_num_t gpio_ex_num) { return -1; }
 
-esp_err_t gpio_ex_set_direction(gpio_ex_num_t gpio_ex_num, gpio_ex_mode_t mode) { return -1; }
-
-esp_err_t gpio_ex_is_port0r_register(void (*fn)(void*), void* arg) { return -1; }
-
-esp_err_t gpio_ex_install_is_port0r_service(void) { return -1; }
-
-void gpio_ex_uninstall_is_port0r_service() {}
-
-esp_err_t gpio_ex_is_port0r_handler_remove(gpio_ex_num_t gpio_ex_num) { return -1; }
+esp_err_t gpio_ex_isr_register(void (*fn)(gpio_ex_num_t, void*), void* arg) { return -1; }
 
 /* ****************************************************************************************************************** */
 /*                                                   Testing Methods                                                  */

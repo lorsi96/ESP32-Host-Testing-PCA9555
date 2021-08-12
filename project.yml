@@ -46,6 +46,7 @@
   :test:
     - *common_defines
     - TEST
+    - __GPIO_EX_TEST__ 
   :test_preprocess:
     - *common_defines
     - TEST

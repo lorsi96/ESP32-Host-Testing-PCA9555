@@ -154,7 +154,7 @@ typedef struct {
 } gpio_ex_config_t;
 
 /**
- * @brief Initialises I2C if not initialised and configures the given pin to input/output as
+ * @brief Initialises I2C if is not initialised and configures the given pin to input/output as
  *          specified in the configuration structure.
  *
  * @param pgpio_ex_config configuration of a given pin.
@@ -162,16 +162,46 @@ typedef struct {
  */
 esp_err_t gpio_ex_config(gpio_ex_config_t* pgpio_ex_config);
 
+/**
+ * @brief Sets the level of a given GPIO.
+ *
+ * @param gpio_ex_num target GPIO
+ * @param level 1 On, 0 Off
+ * @return esp_err_t
+ */
 esp_err_t gpio_ex_set_level(gpio_ex_num_t gpio_ex_num, uint32_t level);
 
+/**
+ * @brief Gets the level of a given GPIO.
+ *
+ * @param gpio_ex_num  target GPIO
+ * @return int -- 1 On, 0 Off
+ */
 int gpio_ex_get_level(gpio_ex_num_t gpio_ex_num);
 
+/**
+ * @brief Sets the direccion of a given GPIO.
+ *
+ * @param gpio_ex_num target GPIO
+ * @param mode either input or output as defined in the gpio_ex_mode_t enum
+ * @return esp_err_t
+ */
 esp_err_t gpio_ex_set_direction(gpio_ex_num_t gpio_ex_num, gpio_ex_mode_t mode);
 
+/**
+ * @brief Registers a callback to be executed when an ISR is triggered in a GPIO.
+ *
+ * @note NOT IMPLEMENTED!
+ *
+ * @param fn function to be called when the aforementioned event occurs.
+ * @param arg arguments to be passed to the callback.
+ * @return esp_err_t
+ */
 esp_err_t gpio_ex_isr_register(void (*fn)(gpio_ex_num_t, void*), void* arg);
 
-// Test only
+#ifdef __GPIO_EX_TEST__
 void __gpio_ex_reset_i2c();
+#endif
 
 #ifdef __cplusplus
 }
